@@ -124,7 +124,59 @@ while true; do
             ;;
 
         4)
-            bash <(curl -fsSL https://raw.githubusercontent.com/nobita329/ptero/main/ptero/panel/pterodactyl/install.sh)
+            #!/bin/bash
+
+while true; do
+    clear
+    echo "========================================="
+    echo "   PTERODACTYL CONTROL CENTER v2.1"
+    echo "========================================="
+    echo ""
+    echo "1) Install Panel"
+    echo "2) Create User"
+    echo "3) Update Panel"
+    echo "4) Install SSL"
+    echo "5) Uninstall Panel"
+    echo "6) Exit"
+    echo ""
+    read -p "Select option: " opt
+
+    case $opt in
+        1)
+            bash <(curl -fsSL https://raw.githubusercontent.com/nobita329/ptero/refs/heads/main/ptero/panel/pterodactyl/install.sh)
+            read -p "Press Enter..."
+            ;;
+        2)
+            cd /var/www/pterodactyl && php artisan p:user:make
+            read -p "Press Enter..."
+            ;;
+        3)
+            cd /var/www/pterodactyl
+            php artisan down
+            curl -Lo panel.tar.gz https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz
+            tar -xzvf panel.tar.gz
+            COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
+            php artisan migrate --seed --force
+            php artisan up
+            read -p "Press Enter..."
+            ;;
+        4)
+            bash <(curl -fsSL https://raw.githubusercontent.com/nobita329/ptero/refs/heads/main/ptero/panel/pterodactyl/ssl.sh)
+            read -p "Press Enter..."
+            ;;
+        5)
+            rm -rf /var/www/pterodactyl
+            read -p "Press Enter..."
+            ;;
+        6)
+            exit 0
+            ;;
+        *)
+            echo "Invalid option"
+            sleep 1
+            ;;
+    esac
+done
             pause
             ;;
 
