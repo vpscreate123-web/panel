@@ -481,7 +481,7 @@ while true; do
     case $choice in
         1) install_cf ;;
         2) uninstall_cf ;;
-        0)clear; exit ;;
+        3)clear; exit ;;
         *) echo -e "  ${RED}Invalid Option${NC}"; sleep 1 ;;
     esac
 done
