@@ -144,7 +144,7 @@ while true; do
     echo -e "${C} 6) ${W}Blueprint + Addon Installer${N}"
     echo -e "${C} 7) ${W}install cloudflare${N}"
     echo -e "${C} 8) ${W}Tailscale VPN Installer${N}"
-    echo -e "${C} 9) ${W}theme${N}"
+    echo -e "${C} 9) ${W}install theme${N}"
     echo -e "${R} 0) Exit${N}"
 
     echo ""
@@ -482,7 +482,7 @@ while true; do
     case $choice in
         1) install_cf ;;
         2) uninstall_cf ;;
-        3)clear; exit ;;
+        0)clear; exit ;;
         *) echo -e "  ${RED}Invalid Option${NC}"; sleep 1 ;;
     esac
 done
