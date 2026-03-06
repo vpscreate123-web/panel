@@ -54,7 +54,7 @@ intro() {
     typewriter "   ╚═╝      ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝"
     echo -e "${N}"
     echo ""
-    typewriter "💎 TYRKROX NODE BOOTING..."
+    typewriter "💎 TYRKROX GAMER BOOTING..."
     sleep 1
     progress_bar
     clear
@@ -62,7 +62,7 @@ intro() {
 
 # ---- HEADER ----
 header() {
-    echo -e "${P}${BLINK}💎 TYRKROX NODE 💎${N}"
+    echo -e "${P}${BLINK}💎 TYRKROX GAMER 💎${N}"
     echo -e "${Y}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
     echo ""
 }
