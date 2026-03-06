@@ -497,8 +497,7 @@ while true; do
         1) install_cf ;;
         2) uninstall_cf ;;
         0) clear; exit ;;
-        *)
-echo "Invalid option"
+        *)echo "Invalid option"
 ;;
 
 esac
@@ -506,6 +505,7 @@ esac
 echo
 read -p "Press Enter to continue..."
 done
+
             pause
             ;;
         8)
