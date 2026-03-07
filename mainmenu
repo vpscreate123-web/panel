@@ -61,7 +61,6 @@ intro() {
 }
 
 # ---- HEADER ----
-
 display_header() {
     clear
     cat << "EOF"
@@ -71,17 +70,10 @@ display_header() {
    ██║     ╚██╔╝  ██╔══██╗██╔═██╗ ██╔══██╗██║   ██║ ██╔██╗ 
    ██║      ██║   ██║  ██║██║  ██╗██║  ██║╚██████╔╝██╔╝ ██╗
    ╚═╝      ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝
-                    TYRKROX
+                    TYRKROX GAMER 
 EOF
     echo
 }
-
-header() {
-    echo -e "${P}${BLINK}💎 TYRKROX GAMER 💎${N}"
-    echo -e "${Y}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${N}"
-    echo ""
-}
-
 pause() {
     echo ""
     read -p "${W}Press [Enter] to return...${N}" dummy
