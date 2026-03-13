@@ -4,74 +4,77 @@ export LANG=C.UTF-8
 
 set -u
 
-# ---- COLORS ----
-C=$'\033[36m'
-G=$'\033[32m'
-R=$'\033[31m'
-B=$'\033[34m'
-Y=$'\033[33m'
-W=$'\033[97m'
-P=$'\033[35m'
+# ---- COLORS (Enhanced) ----
+C=$'\033[36m'     # Cyan
+G=$'\033[32m'     # Green
+R=$'\033[31m'     # Red
+B=$'\033[34m'     # Blue
+Y=$'\033[33m'     # Yellow
+W=$'\033[97m'     # White
+P=$'\033[35m'     # Purple
+DIM=$'\033[2m'    # Dim
 BLINK=$'\033[5m'
-N=$'\033[0m'
+N=$'\033[0m'      # Reset
 
-# ---- TYPEWRITER EFFECT ----
-typewriter() {
-    text="$1"
-    delay=0.005
-    for ((i=0; i<${#text}; i++)); do
-        printf "%s" "${text:$i:1}"
-        sleep $delay
+# ---- NEW COOL ANIMATION FUNCTIONS ----
+
+# 1. Neon Flicker Effect for Logo
+flicker_text() {
+    local text="$1"
+    clear
+    # Faster flicker for a "Powering On" feel
+    for i in {1..3}; do
+        echo -e "${DIM}$text${N}" | sed 's/█/ /g' && sleep 0.05; clear
+        echo -e "${P}$text${N}" && sleep 0.08; clear
     done
-    printf "\n"
+    echo -e "${P}$text${N}"
 }
 
-# ---- PROGRESS BAR ----
-progress_bar() {
-    echo -e "${C}Initializing TYRKROX NODE...${N}"
-    for i in {1..30}; do
-        printf "${G}#${N}"
-        sleep 0.03
+# 2. Modern Glitch Loading
+modern_loading() {
+    local duration=20
+    local width=40
+    echo -e "${C}──────────────────────────────────────────────────${N}"
+    for ((i=1; i<=duration; i++)); do
+        let "percent = i * 100 / duration"
+        let "filled = i * width / duration"
+        let "empty = width - filled"
+        
+        printf "\r${W} [${G}"
+        printf "%${filled}s" | tr ' ' '■'
+        printf "${DIM}"
+        printf "%${empty}s" | tr ' ' '□'
+        printf "${N}${W}] ${C}${percent}%%${N} ${DIM}Searching for Nodes...${N}"
+        sleep 0.07
     done
-    echo ""
-    for i in {0..100..10}; do
-        printf "\r${Y}Loading System: $i%%%${N}"
-        sleep 0.15
-    done
-    echo ""
+    echo -e "\n${G} ✔ SYSTEM READY: TYRKROX CORE ONLINE${N}"
+    echo -e "${C}──────────────────────────────────────────────────${N}"
     sleep 1
 }
 
-# ---- INTRO ----
+# 3. Quick System Scan Effect
+scan_effect() {
+    echo -e "${Y}Scanning Hardware...${N}"
+    sleep 0.3
+    echo -e "${G}Kernel: $(uname -r) ${C}[OK]${N}"
+    sleep 0.2
+    echo -e "${G}Memory: $(free -h | awk '/^Mem:/ {print $2}') ${C}[OK]${N}"
+    sleep 0.2
+    echo -e "${G}Network: Cloudflare-DNA ${C}[STABLE]${N}"
+    sleep 0.5
+}
+
+# ---- UPDATED INTRO ----
 intro() {
     clear
-    echo -e "${P}"
-    typewriter "████████╗██╗   ██╗██████╗ ██╗  ██╗██████╗  ██████╗ ██╗  ██╗"
-    typewriter "╚══██╔══╝╚██╗ ██╔╝██╔══██╗██║ ██╔╝██╔══██╗██╔═══██╗╚██╗██╔╝"
-    typewriter "   ██║    ╚████╔╝ ██████╔╝█████╔╝ ██████╔╝██║   ██║ ╚███╔╝ "
-    typewriter "   ██║     ╚██╔╝  ██╔══██╗██╔═██╗ ██╔══██╗██║   ██║ ██╔██╗ "
-    typewriter "   ██║      ██║   ██║  ██║██║  ██╗██║  ██║╚██████╔╝██╔╝ ██╗"
-    typewriter "   ╚═╝      ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝"
-    echo -e "${N}"
-    echo ""
-    typewriter "💎 TYRKROX GAMER BOOTING..."
-    sleep 1
-    progress_bar
-    clear
-}
-
-# ---- HEADER ----
-
-display_header() {
-    clear
-    cat << "EOF"
-████████╗██╗   ██╗██████╗ ██╗  ██╗██████╗  ██████╗ ██╗  ██╗
-╚══██╔══╝╚██╗ ██╔╝██╔══██╗██║ ██╔╝██╔══██╗██╔═══██╗╚██╗██╔╝
-   ██║    ╚████╔╝ ██████╔╝█████╔╝ ██████╔╝██║   ██║ ╚███╔╝ 
-   ██║     ╚██╔╝  ██╔══██╗██╔═██╗ ██╔══██╗██║   ██║ ██╔██╗ 
-   ██║      ██║   ██║  ██║██║  ██╗██║  ██║╚██████╔╝██╔╝ ██╗
-   ╚═╝      ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝
-                    TYRKROX
+    LOGO="
+    ████████╗██╗   ██╗██████╗ ██╗  ██╗██████╗  ██████╗ ██╗  ██╗
+    ╚══██╔══╝╚██╗ ██╔╝██╔══██╗██║ ██╔╝██╔══██╗██╔═══██╗╚██╗██╔╝
+       ██║    ╚████╔╝ ██████╔╝█████╔╝ ██████╔╝██║   ██║ ╚███╔╝ 
+       ██║     ╚██╔╝  ██╔══██╗██╔═██╗ ██╔══██╗██║   ██║ ██╔██╗ 
+       ██║      ██║   ██║  ██║██║  ██╗██║  ██╗╚██████╔╝██╔╝ ██╗
+       ╚═╝      ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝"
+                    TYRKROX GAMER
 EOF
     echo
 }
