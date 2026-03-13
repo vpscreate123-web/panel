@@ -159,7 +159,7 @@ while true; do
     echo -e "${C} 6) ${W}🎨Blueprint + Addon Installer${N}"
     echo -e "${C} 7) ${W}☁️ installing Cloudflare${N}"
     echo -e "${C} 8) ${W}🛠️ Main tools ${N}"
-    echo -e "${R} 0)🛑 Exit${N}"
+    echo -e "${R} 0)${N} ${W}🛑 Exit System${N}"
 
     echo ""
     read -p "${Y}Select an option [1-9]: ${N}" choice
